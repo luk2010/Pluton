@@ -5,7 +5,19 @@
 //! @copyright Atlanti's Corp(r) 2024
 //! 
 
+#include "Pl/Pl.h"
+
+class MyApp : public Pl::Application
+{
+public:
+    
+    void onLaunched()
+    {
+        activate();
+    }
+};
+
 int main(int argc, char** argv) 
 {
-    return 0;
+    return MyApp().run(argc, argv);
 }

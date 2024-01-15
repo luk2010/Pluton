@@ -1,8 +1,7 @@
 
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/config.h.in ${CMAKE_CURRENT_BINARY_DIR}/config.h)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/config.h.in ${CMAKE_CURRENT_SOURCE_DIR}/Pl/Config.h)
 
-file(GLOB PLUTON_HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/Pl/*.h
-                         ${CMAKE_CURRENT_BINARY_DIR}/config.h)
+file(GLOB PLUTON_HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/Pl/*.h)
 file(GLOB PLUTON_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/Pl/*.cpp)
 
 add_library(
