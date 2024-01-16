@@ -10,5 +10,6 @@
 
 #include "Pl/Application.h"
 #include "Pl/Platform.h"
+#include "Pl/Window.h"
 
 #endif 

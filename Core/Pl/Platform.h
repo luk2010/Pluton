@@ -35,6 +35,8 @@
 
 #           include <Cocoa/Cocoa.h>
 
+#           define PLUTON_LANG_OBJC 1
+
 #       else  
 
 #           include <objc/objc-runtime.h>
@@ -74,6 +76,73 @@ namespace Pl
 
 #   define PLUTON_DEFINE_ERROR(NAME) \
     struct NAME : public Error { using Error::Error; };
-}   
+    
+    PLUTON_DEFINE_ERROR(RuntimeError)
+    PLUTON_DEFINE_ERROR(WinSysError)
+    
+    struct Point
+    {
+        double x = 0;
+        double y = 0;
+        
+        inline Point operator + (const Point& rhs) const
+        {
+            return { x + rhs.x, y + rhs.y };
+        }
+        
+        inline Point operator + (double rhs) const
+        {
+            return { x + rhs, y + rhs };
+        }
+        
+        inline Point operator - (const Point& rhs) const
+        {
+            return { x - rhs.x, y - rhs.y };
+        }
+        
+        inline Point operator - (double rhs) const
+        {
+            return { x - rhs, y - rhs };
+        }
+    };
+    
+    struct Size
+    {
+        double width = 0;
+        double height = 0;
+    };
+    
+    struct Rect
+    {
+        Point origin;
+        Size size;
+        
+        inline Rect(const Point& origin, const Size& size):
+        origin(origin), size(size) { }
+        
+        inline Rect(const Point& origin):
+        origin(origin) { }
+        
+        inline Rect(const Size& size):
+        size(size) { }
+        
+        inline Rect shrink(double left, double top, double right, double bottom) const
+        {
+            return Rect({ origin.x + left, origin.y + top },
+                        { size.width - left - right, size.height - top - bottom });
+        }
+        
+        inline Rect expand(double left, double top, double right, double bottom) const
+        {
+            return Rect({
+                origin.x - left,
+                origin.y - top
+            }, {
+                size.width + left + right,
+                size.height + top + bottom
+            });
+        }
+    };
+}
 
 #endif

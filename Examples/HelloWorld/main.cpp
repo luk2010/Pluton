@@ -9,11 +9,20 @@
 
 class MyApp : public Pl::Application
 {
+    Pl::Ref < Pl::Window > mWindow;
+    
 public:
     
     void onLaunched()
     {
         activate();
+        
+        mWindow = Pl::Make < Pl::Window >(Pl::Size{1024, 768},
+                                          Pl::Window::Style(),
+                                          "Hello World!");
+        
+        mWindow->show();
+        mWindow->center();
     }
 };
 

@@ -73,6 +73,8 @@ namespace Pl
         NSApp = [NSApplication sharedApplication];
         NSApp.delegate = priv->delegate;
         NSApp.activationPolicy = NSApplicationActivationPolicyRegular;
+        
+        mShouldTerminateAfterLastWindowClosed = true;
     }
     
     Application::~Application()
