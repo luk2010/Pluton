@@ -12,7 +12,7 @@
 
 namespace Pl 
 {
-    class Application 
+    class PLUTON_EXPORT Application 
     {
         PLUTON_PRIVATE_DATA mPriv;
 

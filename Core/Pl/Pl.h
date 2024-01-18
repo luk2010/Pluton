@@ -10,6 +10,7 @@
 
 #include "Pl/Application.h"
 #include "Pl/Platform.h"
+#include "Pl/View.h"
 #include "Pl/Window.h"
 
 #endif 

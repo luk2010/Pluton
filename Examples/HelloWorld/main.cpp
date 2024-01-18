@@ -23,6 +23,9 @@ public:
         
         mWindow->show();
         mWindow->center();
+        
+        auto view = Pl::Make < Pl::View >(mWindow->frameOfContent().size);
+        mWindow->setContentView(view);
     }
 };
 

@@ -9,10 +9,11 @@
 #define __PL_WINDOW_H__
 
 #include "Pl/Platform.h"
+#include "Pl/View.h"
 
 namespace Pl
 {
-    class Window
+    class PLUTON_EXPORT Window
     {
 #       if PLUTON_WINSYS_COCOA
         
@@ -22,9 +23,11 @@ namespace Pl
         
 #       endif
         
+        Ref < View > mContentView;
+        
     public:
         
-        struct Style
+        struct PLUTON_EXPORT Style
         {
             bool closable :1;
             bool resizable :1;
@@ -71,6 +74,10 @@ namespace Pl
         virtual void center();
         
         virtual void close();
+        
+        virtual void setContentView(const Ref < View >& view);
+        
+        virtual Ref < View > contentView() const;
         
     public:
         

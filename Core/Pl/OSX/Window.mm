@@ -168,6 +168,19 @@ namespace Pl
         [(NSWindow*)mHandle performClose:nil];
     }
     
+    void Window::setContentView(const Ref < View >& view)
+    {
+        [(NSWindow*)mHandle setContentView:view->handle()];
+        
+        mContentView = view;
+        mContentView->setFrame(frameOfContent().size);
+    }
+    
+    Ref < View > Window::contentView() const
+    {
+        return mContentView;
+    }
+    
     void Window::onMove(const Point& newOrigin)
     {
         
@@ -175,7 +188,8 @@ namespace Pl
     
     void Window::onSize(const Size& newSize)
     {
-        
+        if (mContentView)
+            mContentView->setFrame(frameOfContent().size);
     }
     
     void Window::onClose()

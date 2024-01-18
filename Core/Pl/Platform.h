@@ -33,6 +33,7 @@
 
 #       ifdef __OBJC__
 
+#           include <objc/objc-runtime.h>
 #           include <Cocoa/Cocoa.h>
 
 #           define PLUTON_LANG_OBJC 1
@@ -54,7 +55,7 @@ namespace Pl
     template < class T, class... Params > inline auto Make(Params&&... params) 
         { return std::make_shared < T >(std::forward < Params >(params)...); }
 
-    struct Error : public std::exception
+    struct PLUTON_EXPORT Error : public std::exception
     {
         std::string mMessage;
 
@@ -80,7 +81,7 @@ namespace Pl
     PLUTON_DEFINE_ERROR(RuntimeError)
     PLUTON_DEFINE_ERROR(WinSysError)
     
-    struct Point
+    struct PLUTON_EXPORT Point
     {
         double x = 0;
         double y = 0;
@@ -106,22 +107,19 @@ namespace Pl
         }
     };
     
-    struct Size
+    struct PLUTON_EXPORT Size
     {
         double width = 0;
         double height = 0;
     };
     
-    struct Rect
+    struct PLUTON_EXPORT Rect
     {
         Point origin;
         Size size;
         
-        inline Rect(const Point& origin, const Size& size):
+        inline Rect(const Point& origin = {}, const Size& size = {}):
         origin(origin), size(size) { }
-        
-        inline Rect(const Point& origin):
-        origin(origin) { }
         
         inline Rect(const Size& size):
         size(size) { }
