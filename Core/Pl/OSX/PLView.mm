@@ -21,4 +21,24 @@
     return self;
 }
 
+- (void)drawRect:(NSRect)dirtyRect
+{
+    Pl::View* view = [self Pl];
+    
+    if (!view)
+        return;
+    
+    Pl::Ref < Pl::DrawerProvider > provider = view->drawerProvider();
+    
+    if (!provider)
+        return;
+    
+    Pl::Ref < Pl::Drawer > drawer = provider->createDrawer();
+    
+    if (!drawer)
+        return;
+    
+    view->draw(*drawer);
+}
+
 @end

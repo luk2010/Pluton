@@ -43,6 +43,11 @@
     _window->onClose();
 }
 
+- (void)windowDidUpdate:(NSNotification *)notification
+{
+    _window->update();
+}
+
 @end
 
 namespace Pl
@@ -174,11 +179,18 @@ namespace Pl
         
         mContentView = view;
         mContentView->setFrame(frameOfContent().size);
+        mContentView->onNewWindow(shared_from_this());
     }
     
     Ref < View > Window::contentView() const
     {
         return mContentView;
+    }
+    
+    void Window::update()
+    {
+        if (mContentView)
+            mContentView->update();
     }
     
     void Window::onMove(const Point& newOrigin)

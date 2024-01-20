@@ -10,16 +10,32 @@
 
 #include "Pl/Platform.h"
 #include "Pl/Node.h"
+#include "Pl/DrawerProvider.h"
 
 namespace Pl
 {
+    class Window;
+    
     class PLUTON_EXPORT View : public Node < View >
     {
+        friend class Node < View >;
+        friend class Window;
+        
 #       if PLUTON_WINSYS_COCOA
         
         id mHandle;
         
 #       endif
+        
+        std::atomic_bool mLayoutOnNextUpdate;
+        
+        std::atomic_bool mNeedsLayout;
+        
+        std::atomic_bool mIsCreated;
+        
+        Weak < Window > mWindow;
+        
+        Ref < DrawerProvider > mDrawerProvider;
         
     public:
         
@@ -41,11 +57,35 @@ namespace Pl
         
         virtual Rect bounds() const;
         
+        virtual void layout();
+        
+        virtual void layoutIfNeeded();
+        
+        virtual void update();
+        
+        virtual void setLayoutOnNextUpdate(bool value);
+        
+        virtual bool isLayoutOnNextUpdate() const;
+        
+        virtual Ref < Window > window() const;
+        
+        virtual Ref < DrawerProvider > drawerProvider() const;
+        
+        virtual void setDrawerProvider(const Ref < DrawerProvider >& provider);
+        
+        virtual void draw(Drawer& drawer);
+        
     protected:
         
         virtual bool onWillAddChild(const RefT& child, const RefT& before);
         
         virtual bool onWillRemoveChild(const RefT& child);
+        
+        virtual void onNewParent(const RefT& parent);
+        
+        virtual void onNewWindow(const Ref < Window >& window);
+        
+        virtual void onCreate();
     };
 }
 

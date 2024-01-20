@@ -141,6 +141,49 @@ namespace Pl
             });
         }
     };
+    
+    struct PLUTON_EXPORT RGBAColor
+    {
+        double red;
+        double green;
+        double blue;
+        double alpha;
+        
+        inline RGBAColor(double r, double g, double b, double a = 1):
+        red(r), green(g), blue(b), alpha(a) { }
+        
+        inline RGBAColor operator + (const RGBAColor& rhs) const
+        {
+            return RGBAColor(red + rhs.red,
+                             green + rhs.green,
+                             blue + rhs.blue,
+                             std::clamp(alpha + rhs.alpha, 0.0, 1.0));
+        }
+        
+        inline RGBAColor operator + (double rhs) const
+        {
+            return RGBAColor(red + rhs,
+                             green + rhs,
+                             blue + rhs,
+                             std::clamp(alpha + rhs, 0.0, 1.0));
+        }
+        
+        inline RGBAColor operator - (const RGBAColor& rhs) const
+        {
+            return RGBAColor(red - rhs.red,
+                             green - rhs.green,
+                             blue - rhs.blue,
+                             std::clamp(alpha - rhs.alpha, 0.0, 1.0));
+        }
+        
+        inline RGBAColor operator - (double rhs) const
+        {
+            return RGBAColor(red - rhs,
+                             green - rhs,
+                             blue - rhs,
+                             std::clamp(alpha - rhs, 0.0, 1.0));
+        }
+    };
 }
 
 #endif

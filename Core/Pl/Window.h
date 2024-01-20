@@ -13,7 +13,7 @@
 
 namespace Pl
 {
-    class PLUTON_EXPORT Window
+    class PLUTON_EXPORT Window : public std::enable_shared_from_this < Window >
     {
 #       if PLUTON_WINSYS_COCOA
         
@@ -78,6 +78,8 @@ namespace Pl
         virtual void setContentView(const Ref < View >& view);
         
         virtual Ref < View > contentView() const;
+        
+        virtual void update();
         
     public:
         
