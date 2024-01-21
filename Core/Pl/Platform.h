@@ -18,12 +18,21 @@
 #include <exception>
 #include <sstream>
 #include <atomic>
+#include <filesystem>
+#include <string_view>
 
 #define PLUTON_PRIVATE_DATA  void*
 
 #ifdef __APPLE__
 
 #   include <TargetConditionals.h>
+#   include <dlfcn.h>
+
+#   define PLUTON_DYNLIB_HANDLE      void*
+#   define PLUTON_DYNLIB_DLOPEN(a)   dlopen(a, RTLD_LAZY)
+#   define PLUTON_DYNLIB_DLSYM(a, b) dlsym(a, b)
+#   define PLUTON_DYNLIB_DLCLOSE(a)  dlclose(a)
+#   define PLUTON_DYNLIB_EXT         ".dylib"
 
 #   if TARGET_OS_OSX
 
@@ -80,6 +89,8 @@ namespace Pl
     
     PLUTON_DEFINE_ERROR(RuntimeError)
     PLUTON_DEFINE_ERROR(WinSysError)
+    PLUTON_DEFINE_ERROR(FileNotFound)
+    PLUTON_DEFINE_ERROR(NullArg)
     
     struct PLUTON_EXPORT Point
     {

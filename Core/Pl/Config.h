@@ -1,1 +1,4 @@
 
+#define PLUTON_PLUGIN_INSTALL_PFN "PLPluginInstall"
+#define PLUTON_PLUGIN_UNINSTALL_PFN "PLPluginUninstall"
+#define PLUTON_PLUGIN_GETINFOS_PFN "PLPluginGetInfos"

@@ -120,6 +120,16 @@ namespace Pl
         /* Please implement this as you want... */
     }
     
+    void View::setNeedsDraw(bool value)
+    {
+        [(NSView*)mHandle setNeedsDisplay:(BOOL)value];
+    }
+    
+    bool View::needsDraw() const
+    {
+        return [(NSView*)mHandle needsDisplay];
+    }
+    
     bool View::onWillAddChild(const RefT& child, const RefT& before)
     {
         NSView* cHdl = child->handle();

@@ -75,6 +75,10 @@ namespace Pl
         
         virtual void draw(Drawer& drawer);
         
+        virtual void setNeedsDraw(bool value);
+        
+        virtual bool needsDraw() const; 
+        
     protected:
         
         virtual bool onWillAddChild(const RefT& child, const RefT& before);

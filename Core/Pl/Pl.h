@@ -9,7 +9,11 @@
 #define __PL_PL_H__
 
 #include "Pl/Application.h"
+#include "Pl/DynLib.h"
+#include "Pl/Element.h"
 #include "Pl/Platform.h"
+#include "Pl/Plugin.h"
+#include "Pl/PluginManager.h"
 #include "Pl/View.h"
 #include "Pl/Window.h"
 

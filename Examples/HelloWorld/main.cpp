@@ -7,14 +7,14 @@
 
 #include "Pl/Pl.h"
 
-class MyView : public Pl::View
+class MyView : public Pl::Element
 {
-    Pl::Ref < Pl::View > mLeftMenu;
-    Pl::Ref < Pl::View > mContent;
+    Pl::Ref < Pl::Element > mLeftMenu;
+    Pl::Ref < Pl::Element > mContent;
     
 public:
     
-    using Pl::View::View;
+    using Pl::Element::Element;
     
     void layout()
     {
@@ -30,29 +30,26 @@ public:
         mLeftMenu->setFrame(fr);
     }
     
-    void draw(Pl::Drawer& drawer)
-    {
-        drawer.setFillColor(Pl::RGBAColor(0.8, 0.7, 0.6));
-        drawer.fill(bounds(), 0.0);
-    }
-    
 protected:
     
     virtual void onCreate()
     {
         Pl::View::onCreate();
         
+        setBackgroundColor(Pl::RGBAColor(0.8, 0.7, 0.6));
+        
         auto fr = bounds();
         
         auto lmfr = fr;
         lmfr.size.width = 250;
             
-        mLeftMenu = Pl::Make < Pl::View >(lmfr);
+        mLeftMenu = Pl::Make < Pl::Element >(lmfr);
+        mLeftMenu->setBackgroundColor(Pl::RGBAColor(0.6, 0.7, 0.8, 0.5));
         addChild(mLeftMenu);
         
         lmfr.size.width = fr.size.width - 250;
             
-        mContent = Pl::Make < Pl::View >(lmfr);
+        mContent = Pl::Make < Pl::Element >(lmfr);
         addChild(mContent);
     }
 };
@@ -81,5 +78,7 @@ public:
 
 int main(int argc, char** argv) 
 {
+    Pl::PluginManager::Get().loadDirectory("Plugins");
+    
     return MyApp().run(argc, argv);
 }
