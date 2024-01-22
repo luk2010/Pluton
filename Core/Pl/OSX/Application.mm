@@ -6,6 +6,8 @@
 //!
 
 #include "Pl/Application.h"
+#include "Pl/FontManager.h"
+#include "Pl/OSX/OSXFontLoader.h"
 
 @interface PLApplicationDelegate : NSObject < NSApplicationDelegate >
 {
@@ -75,6 +77,8 @@ namespace Pl
         NSApp.activationPolicy = NSApplicationActivationPolicyRegular;
         
         mShouldTerminateAfterLastWindowClosed = true;
+        
+        FontManager::Get().addLoader("OSXFontLoader", Make < OSXFontLoader >());
     }
     
     Application::~Application()

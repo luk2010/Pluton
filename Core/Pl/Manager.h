@@ -66,6 +66,13 @@ namespace Pl
                 remove(*mVals.rbegin());
         }
         
+        void forEach(std::function < bool(const T&) > fun)
+        {
+            for (auto& val : mVals)
+                if (fun(val))
+                    return;
+        }
+        
         template < class Pfn >
         void forEach(Pfn&& fun)
         {
@@ -78,6 +85,11 @@ namespace Pl
         {
             for (const auto& val : mVals)
                 fun(val);
+        }
+        
+        const auto& values() const
+        {
+            return mVals;
         }
         
     protected:
