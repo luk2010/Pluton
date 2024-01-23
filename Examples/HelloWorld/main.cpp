@@ -30,6 +30,18 @@ public:
         mLeftMenu->setFrame(fr);
     }
     
+    void draw(Pl::Drawer& drawer)
+    {
+        Element::draw(drawer);
+        
+        Pl::Path path;
+        
+        path.addRoundedRect({{200, 200}, {200, 200}}, { 10, 10, 10, 10 });
+        
+        drawer.setFillColor(Pl::RGBAColor(0.3, 0.4, 0.5));
+        drawer.fill(path);
+    }
+    
 protected:
     
     virtual void onCreate()
@@ -37,6 +49,8 @@ protected:
         Pl::View::onCreate();
         
         setBackgroundColor(Pl::RGBAColor(0.8, 0.7, 0.6));
+        
+        auto font = Pl::FontManager::Get().loadWithFamily("Courier", 12.0);
         
         auto fr = bounds();
         

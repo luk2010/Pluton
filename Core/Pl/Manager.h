@@ -66,7 +66,7 @@ namespace Pl
                 remove(*mVals.rbegin());
         }
         
-        void forEach(std::function < bool(const T&) > fun)
+        void forEach(std::function < bool(const Ptr&) > fun)
         {
             for (auto& val : mVals)
                 if (fun(val))

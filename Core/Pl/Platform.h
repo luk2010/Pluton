@@ -40,16 +40,13 @@
 #       define PLUTON_WINSYS_COCOA  1
 #       define PLUTON_EXPORT        __attribute__((visibility("default")))
 
+#       include <objc/objc-runtime.h>
+
 #       ifdef __OBJC__
 
-#           include <objc/objc-runtime.h>
 #           include <Cocoa/Cocoa.h>
 
 #           define PLUTON_LANG_OBJC 1
-
-#       else  
-
-#           include <objc/objc-runtime.h>
 
 #       endif 
 
@@ -151,6 +148,14 @@ namespace Pl
                 size.height + top + bottom
             });
         }
+    };
+    
+    struct PLUTON_EXPORT RectCorners
+    {
+        double topLeft = 0.0;
+        double topRight = 0.0;
+        double bottomLeft = 0.0;
+        double bottomRight = 0.0;
     };
     
     struct PLUTON_EXPORT RGBAColor

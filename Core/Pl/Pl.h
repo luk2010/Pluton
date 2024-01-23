@@ -11,6 +11,7 @@
 #include "Pl/Application.h"
 #include "Pl/DynLib.h"
 #include "Pl/Element.h"
+#include "Pl/FontManager.h"
 #include "Pl/Platform.h"
 #include "Pl/Plugin.h"
 #include "Pl/PluginManager.h"

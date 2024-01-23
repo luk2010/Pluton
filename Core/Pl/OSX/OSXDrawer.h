@@ -27,6 +27,14 @@ namespace Pl
         virtual void fill(const Rect& rect, double cornerRadius);
         
         virtual void stroke(const Rect& rect, double lineWidth, double cornerRadius);
+        
+        virtual void fill(const Path& path);
+        
+        virtual void stroke(const Path& path, double lineWidth);
+        
+    protected:
+        
+        virtual void setPath(const Path& path);
     };
 }
 

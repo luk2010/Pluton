@@ -41,4 +41,9 @@
     view->draw(*drawer);
 }
 
+- (BOOL)isFlipped
+{
+    return YES;
+}
+
 @end

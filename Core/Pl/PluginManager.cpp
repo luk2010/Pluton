@@ -34,6 +34,9 @@ namespace Pl
     {
         std::vector < Ref < Plugin > > results;
         
+        if (!std::filesystem::exists(dirp))
+            return results;
+        
         if (recursive)
         {
             for (std::filesystem::directory_entry const& entry : std::filesystem::recursive_directory_iterator(dirp))

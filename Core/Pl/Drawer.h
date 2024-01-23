@@ -9,6 +9,7 @@
 #define __PL_DRAWER_H__
 
 #include "Pl/Platform.h"
+#include "Pl/Path.h"
 
 namespace Pl
 {
@@ -25,6 +26,10 @@ namespace Pl
         virtual void fill(const Rect& rect, double cornerRadius) = 0;
         
         virtual void stroke(const Rect& rect, double lineWidth, double cornerRadius) = 0;
+        
+        virtual void fill(const Path& path) = 0;
+        
+        virtual void stroke(const Path& path, double lineWidth) = 0;
     };
 }
 

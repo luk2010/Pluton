@@ -22,13 +22,13 @@ namespace Pl
                                               double size,
                                               bool italic = false,
                                               bool bold = false,
-                                              double weight = 1.0) = 0;
+                                              double weight = FontWeight::Regular) = 0;
         
         virtual Ref < Font > createWithFile(const std::string& filePath,
                                             double size,
                                             bool italic = false,
                                             bool bold = false,
-                                            double weight = 1.0) = 0;
+                                            double weight = FontWeight::Regular) = 0;
     };
 }
 

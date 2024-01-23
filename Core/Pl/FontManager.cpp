@@ -77,7 +77,7 @@ namespace Pl
         
         for (auto& loader : mLoaders)
         {
-            font = loader->loadWithFamily(familyName, size, italic, bold, weight);
+            font = loader.second->createWithFamily(familyName, size, italic, bold, weight);
             
             if (font)
             {
@@ -113,7 +113,7 @@ namespace Pl
         
         for (auto& loader : mLoaders)
         {
-            font = loader->loadWithFile(filePath, size, italic, bold, weight);
+            font = loader.second->createWithFile(filePath, size, italic, bold, weight);
             
             if (font)
             {

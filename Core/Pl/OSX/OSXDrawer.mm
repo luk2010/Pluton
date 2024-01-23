@@ -50,4 +50,52 @@ namespace Pl
         
         CFRelease(_path);
     }
+    
+    void OSXDrawer::fill(const Path& path)
+    {
+        setPath(path);
+        
+        CGContextRef ctxt = [mHandle CGContext];
+        CGContextFillPath(ctxt);
+    }
+    
+    void OSXDrawer::stroke(const Path& path, double lineWidth)
+    {
+        setPath(path);
+        
+        CGContextRef ctxt = [mHandle CGContext];
+        CGContextSetLineWidth(ctxt, lineWidth);
+        CGContextStrokePath(ctxt);
+    }
+    
+    void OSXDrawer::setPath(const Path& path)
+    {
+        CGContextRef ctxt = [mHandle CGContext];
+        
+        for (auto& element : path.elements())
+        {
+            switch (element.type)
+            {
+                case PathElementType::MoveToPoint:
+                    CGContextMoveToPoint(ctxt, element.points[0].x, element.points[0].y);
+                    break;
+                    
+                case PathElementType::AddLineToPoint:
+                    CGContextAddLineToPoint(ctxt, element.points[0].x, element.points[0].y);
+                    break;
+                    
+                case PathElementType::AddQuadCurveToPoint:
+                    CGContextAddQuadCurveToPoint(ctxt, element.points[1].x, element.points[1].y, element.points[0].x, element.points[0].y);
+                    break;
+                    
+                case PathElementType::AddCurveToPoint:
+                    CGContextAddCurveToPoint(ctxt, element.points[1].x, element.points[1].y, element.points[2].x, element.points[2].y, element.points[0].x, element.points[0].y);
+                    break;
+                    
+                case PathElementType::CloseSubPath:
+                    CGContextClosePath(ctxt);
+                    break;
+            }
+        }
+    }
 }
