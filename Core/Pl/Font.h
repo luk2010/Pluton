@@ -48,6 +48,8 @@ namespace Pl
         
         virtual bool underlined() const = 0;
     };
+    
+    typedef Ref < Font > FontRef;
 }
 
 #endif 

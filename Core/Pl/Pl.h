@@ -15,6 +15,8 @@
 #include "Pl/Platform.h"
 #include "Pl/Plugin.h"
 #include "Pl/PluginManager.h"
+#include "Pl/Text.h"
+#include "Pl/U32String.h"
 #include "Pl/View.h"
 #include "Pl/Window.h"
 

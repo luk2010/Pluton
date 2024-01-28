@@ -56,6 +56,9 @@
 
 namespace Pl 
 {
+    typedef std::int32_t U32Char;
+    typedef std::vector < U32Char > U32Buffer;
+    
     template < class T > using Ref = std::shared_ptr < T >;
     template < class T > using Weak = std::weak_ptr < T >;
     template < class T, class... Params > inline auto Make(Params&&... params) 
@@ -200,6 +203,14 @@ namespace Pl
                              std::clamp(alpha - rhs, 0.0, 1.0));
         }
     };
+    
+    struct Range
+    {
+        size_t start = 0;
+        size_t length = 0;
+    };
+    
+    
 }
 
 #endif
